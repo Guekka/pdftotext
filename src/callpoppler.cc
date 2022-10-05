@@ -97,7 +97,7 @@ extern "C" ResultCode pdftotext_print_with_layout(char *filename, void * stream,
         doc->displayPage(textOut, pageNum, 72.0, 72.0, 0, true, false, false);
 
         TextPage *page = textOut->takeText();
-        page->dump(stream, output_f, true, eolUnix, false);
+        page->dump(stream, output_f,  false, eolUnix, true);
 
         delete textOut;
     }

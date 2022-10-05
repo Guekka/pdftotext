@@ -1,0 +1,6 @@
+-std=c++17
+-O0
+-arch
+arm64
+-I 
+/opt/homebrew/Cellar/poppler/22.08.0/include/poppler
