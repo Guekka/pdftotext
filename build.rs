@@ -57,6 +57,7 @@ fn setup(mut callpoppler: &mut cc::Build) -> &mut cc::Build {
     for dir in &poppler.include_paths {
         callpoppler = callpoppler.include(dir);
     }
+    callpoppler.flag_if_supported("-std=c++17");
 
     callpoppler
 }

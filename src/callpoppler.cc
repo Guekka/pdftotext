@@ -45,11 +45,11 @@
 #include <iostream>
 #include <iomanip>
 
-#include <poppler/PDFDoc.h>
-#include <poppler/PDFDocFactory.h>
-#include <poppler/goo/GooString.h>
-#include <poppler/TextOutputDev.h>
-#include <poppler/GlobalParams.h>
+#include <PDFDoc.h>
+#include <PDFDocFactory.h>
+#include <goo/GooString.h>
+#include <TextOutputDev.h>
+#include <GlobalParams.h>
 
 using namespace std;
 
@@ -73,7 +73,7 @@ extern "C" ResultCode pdftotext_print_with_layout(char *filename, void * stream,
 
     GooString *inputPdf = new GooString(filename);
 
-    PDFDoc *doc = PDFDocFactory().createPDFDoc(*inputPdf, nullptr, nullptr);
+    auto doc = PDFDocFactory().createPDFDoc(*inputPdf);
 
     if (!doc->isOk()) {
         return CouldntReadPdf;
