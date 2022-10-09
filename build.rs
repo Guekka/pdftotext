@@ -1,6 +1,6 @@
 #[cfg(feature = "static-poppler")]
 fn setup(callpoppler: &mut cc::Build) -> &mut cc::Build {
-    let static_build = cmake::Config::new("poppler-20.12.1")
+    let static_build = cmake::Config::new("poppler")
         .define("BUILD_SHARED_LIBS", "OFF")
         .define("BUILD_GTK_TESTS", "OFF")
         .define("BUILD_QT5_TESTS", "OFF")
@@ -38,7 +38,7 @@ fn setup(callpoppler: &mut cc::Build) -> &mut cc::Build {
 
     let base = std::env::var("CARGO_MANIFEST_DIR").unwrap();
 
-    let dir = std::path::Path::new(&base).join("poppler-20.12.1/poppler");
+    let dir = std::path::Path::new(&base).join("poppler/poppler");
 
     let dir_config = std::path::Path::new(&static_build).join("build/poppler");
 
