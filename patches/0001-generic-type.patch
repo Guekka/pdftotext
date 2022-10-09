@@ -1,0 +1,40 @@
+From a821d4bdad336aa0ab3ae777e4b3834ccee99f09 Mon Sep 17 00:00:00 2001
+From: Riley Smith <riley@rileysmith.me>
+Date: Sun, 9 Oct 2022 15:58:54 -0700
+Subject: [PATCH] patch
+
+---
+ CMakeLists.txt | 17 +++++++++--------
+ 1 file changed, 9 insertions(+), 8 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index e821b728..202a1316 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -109,14 +109,15 @@ if(NOT (EXISTS ${TESTDATADIR} AND EXISTS ${TESTDATADIR}/test-poppler.c))
+   ")
+ endif()
+ 
+-if(WIN32)
+-  set(_default_fontconfiguration "win32")
+-elseif(ANDROID)
+-  # on android we don't have fontconfig and we don't want windows-specific code
+-  set(_default_fontconfiguration "generic")
+-else()
+-  set(_default_fontconfiguration "fontconfig")
+-endif()
++set(_default_fontconfiguration "generic")
++# if(WIN32)
++#   set(_default_fontconfiguration "win32")
++# elseif(ANDROID)
++#   # on android we don't have fontconfig and we don't want windows-specific code
++#   set(_default_fontconfiguration "generic")
++# else()
++#   set(_default_fontconfiguration "fontconfig")
++# endif()
+ set(FONT_CONFIGURATION "${_default_fontconfiguration}" CACHE STRING "The font configuration backend (win32|generic|fontconfig).")
+ string(TOLOWER "${FONT_CONFIGURATION}" font_configuration)
+ set(WITH_FONTCONFIGURATION_WIN32 OFF)
+-- 
+2.37.3
+
