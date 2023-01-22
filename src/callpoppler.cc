@@ -60,8 +60,6 @@ enum ResultCode {
     CouldntOutput = 3,
 };
 
-// typedef void (*TextOutputFunc)(void *stream, const char *text, int len);
-
 typedef void (*NewPageFunc)(void *stream, int page);
 
 extern "C" ResultCode pdftotext_print_with_layout(char *filename, void * stream, NewPageFunc newpage_f, TextOutputFunc output_f) {
@@ -71,35 +69,31 @@ extern "C" ResultCode pdftotext_print_with_layout(char *filename, void * stream,
         return InternalError;
     }
 
-    GooString *inputPdf = new GooString(filename);
+    GooString inputPdf = GooString(filename);
 
-    auto doc = PDFDocFactory().createPDFDoc(*inputPdf);
+    auto doc = PDFDocFactory().createPDFDoc(inputPdf);
 
     if (!doc->isOk()) {
         return CouldntReadPdf;
     }
-
-    TextOutputDev* textOut;
 
     int lastPage = doc->getNumPages();
 
     for (int pageNum = 1; pageNum <= lastPage; pageNum++) {
         newpage_f(stream, pageNum);
 
-        textOut = new TextOutputDev(nullptr, true, 0.0, false, false, false);
+        auto textOut = TextOutputDev(nullptr, true, 0.0, false, false, false);
 
-        if (!textOut->isOk()) {
+        if (!textOut.isOk()) {
             return CouldntOutput;
         }
 
-        textOut->setTextEOL(eolUnix);
+        textOut.setTextEOL(eolUnix);
 
-        doc->displayPage(textOut, pageNum, 72.0, 72.0, 0, true, false, false);
+        doc->displayPage(&textOut, pageNum, 72.0, 72.0, 0, true, false, false);
 
-        TextPage *page = textOut->takeText();
-        page->dump(stream, output_f,  false, eolUnix, true);
-
-        delete textOut;
+        TextPage *page = textOut.takeText();
+        page->dump(stream, output_f,  true, eolUnix, false);
     }
 
     return NoError;
