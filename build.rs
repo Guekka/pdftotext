@@ -128,7 +128,7 @@ fn main() {
 
     let mut build = cc::Build::new();
 
-    let callpoppler = build.cpp(true).file("src/callpoppler.cc");
+    let callpoppler = build.cpp(true).warnings(false).file("src/callpoppler.cc");
 
     let callpoppler = setup(callpoppler);
 
