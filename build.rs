@@ -7,12 +7,12 @@ fn setup(mut callpoppler: &mut cc::Build) -> &mut cc::Build {
     for dir in &poppler.include_paths {
         callpoppler = callpoppler.include(dir);
     }
-    // gcc and similar
-    callpoppler.flag_if_supported("-std=c++20");
-    // msvc
-    callpoppler.flag_if_supported("/std:c++20");
-
+    
     callpoppler
+    // gcc and similar
+        .flag_if_supported("-std=c++20")
+    // msvc
+        .flag_if_supported("/std:c++20")
 }
 
 fn main() {
