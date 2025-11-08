@@ -43,7 +43,7 @@ fn setup(callpoppler: &mut cc::Build) -> &mut cc::Build {
     let callpoppler = callpoppler
         .include(dir)
         .include(dir_config)
-        .flag_if_supported("-std=c++17");
+        .flag_if_supported("-std=c++20");
 
     callpoppler
 }
@@ -100,7 +100,7 @@ fn setup(mut callpoppler: &mut cc::Build) -> &mut cc::Build {
     let callpoppler = callpoppler
         .include(dir)
         .include(dir_config)
-        .flag_if_supported("-std=c++17");
+        .flag_if_supported("-std=c++20");
 
     callpoppler
 }
@@ -116,7 +116,7 @@ fn setup(mut callpoppler: &mut cc::Build) -> &mut cc::Build {
     for dir in &poppler.include_paths {
         callpoppler = callpoppler.include(dir);
     }
-    callpoppler.flag_if_supported("-std=c++17");
+    callpoppler.flag_if_supported("-std=c++20");
 
     callpoppler
 }

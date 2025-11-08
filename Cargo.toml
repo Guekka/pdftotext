@@ -1,6 +1,6 @@
 [package]
 name = "pdftotext"
-version = "0.2.1"
+version = "0.2.2"
 authors = ["Elias Gabriel Amaral da Silva <tolkiendili@gmail.com>", "Riley Smith <riley@rileysmith.me>"]
 edition = "2018"
 license = "GPL-2.0 OR GPL-3.0"
